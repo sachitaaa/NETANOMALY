@@ -11,3 +11,6 @@ __pycache__/
 # Virtual environments
 .venv/
 venv/
+
+# Generated machine learning models
+models/
