@@ -463,3 +463,18 @@ This result demonstrates poor generalization from Tuesday and Wednesday training
 **Limitation:** This is a diagnostic sample from a dataset already used in earlier experiments, not an independent final evaluation.
 
 **Next step:** Improve the project's usability and documentation while clearly reporting the model's generalization limitations.
+ ### Experiment 19: Decision Threshold Analysis
+
+**Objective:** Investigate how the classification threshold affects attack detection on a reproducible sample of 10,000 Friday DDoS traffic records.
+
+**Method:** Loaded the saved Random Forest model, calculated attack probabilities, and evaluated thresholds of 0.10, 0.20, 0.30, 0.40, and 0.50.
+
+**Key findings:**
+- At threshold 0.10, the model detected 3,637 of 5,747 attacks, achieving 63.29% recall with 20 false alarms.
+- At threshold 0.20, it detected 3,620 attacks, achieving 62.99% recall with only 2 false alarms.
+- At threshold 0.50, recall fell to 17.07%, with 4,766 attacks missed.
+- Lowering the threshold increased attack detection, but the trade-off varied across thresholds.
+
+**Conclusion:** The default threshold of 0.50 performs poorly for detecting attacks in this Friday sample. Threshold adjustment can improve detection, but the results do not establish an optimal production threshold. A separate validation dataset and an independent test set are needed before choosing a final threshold.
+
+**Limitation:** Friday traffic has been used in earlier experiments, so these results are exploratory rather than an independent final evaluation.
