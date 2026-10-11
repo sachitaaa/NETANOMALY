@@ -478,3 +478,24 @@ This result demonstrates poor generalization from Tuesday and Wednesday training
 **Conclusion:** The default threshold of 0.50 performs poorly for detecting attacks in this Friday sample. Threshold adjustment can improve detection, but the results do not establish an optimal production threshold. A separate validation dataset and an independent test set are needed before choosing a final threshold.
 
 **Limitation:** Friday traffic has been used in earlier experiments, so these results are exploratory rather than an independent final evaluation.
+
+### Experiment 20: Investigating Missed DDoS Attacks
+
+**Objective:** Investigate why the baseline Random Forest model classifies some Friday DDoS attacks as benign.
+
+**Method:** Evaluated a reproducible sample of 10,000 Friday traffic records. Compared attack probabilities and the median values of the eight most important model features for correctly detected and missed attacks.
+
+**Results:**
+- Actual attacks: 5,747
+- Detected attacks: 963
+- Missed attacks: 4,784
+- Attack recall at threshold 0.50: 17.07%
+- Mean attack probability for missed attacks: 26.38%
+- Mean attack probability for detected attacks: 60.39%
+
+**Feature observations:**
+- Missed attacks had lower median backward packet length and packet-length variability statistics.
+- Median Flow Packets/s was higher for missed attacks (5.374) than detected attacks (0.159).
+- These differences suggest that missed and detected attacks have different traffic characteristics.
+
+**Conclusion:** The baseline model struggles to detect many Friday attacks, even though some traffic features differ
