@@ -60,3 +60,23 @@ High accuracy on a random train-test split does not guarantee good performance o
 ## Next Experiment
 
 Train a new model using Tuesday and Wednesday data plus a portion of Friday data. Keep the remaining Friday data separate for evaluation to check whether including Friday examples improves DDoS detection.
+
+## Experiment 5: Training with Friday Data
+
+**Training data:** 80% of Friday traffic combined with 80% of Tuesday and Wednesday traffic.
+
+**Evaluation:** Held-out 20% of Friday traffic and held-out 20% of Tuesday and Wednesday traffic.
+
+### Friday holdout results
+
+- Accuracy: 99.95%
+- Attack precision: 99.95%
+- Attack recall: 99.96%
+- Attack F1-score: 99.96%
+- Attacks detected: 25,593
+- Attacks missed: 10
+- Benign false positives: 13
+
+**Observation:** Including Friday traffic in training substantially improved performance on the held-out Friday portion. However, the random split may contain similar traffic patterns in training and testing, so evaluation on a separate capture or day is still needed to assess generalization.
+
+**Saved model:** `models/random_forest_friday_experiment.joblib`
