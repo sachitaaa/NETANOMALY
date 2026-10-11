@@ -1,4 +1,4 @@
-import pandas as pd
+﻿import pandas as pd
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -23,8 +23,12 @@ def prepare_data(df):
 
 
 if __name__ == "__main__":
-    df = load_dataset("Bruteforce-Tuesday-no-metadata.parquet")
-    X, y = prepare_data(df)
+    df_tuesday = load_dataset("Bruteforce-Tuesday-no-metadata.parquet")
+    df_wednesday = load_dataset("DoS-Wednesday-no-metadata.parquet")
+
+    df_combined = pd.concat([df_tuesday, df_wednesday], ignore_index=True)
+
+    X, y = prepare_data(df_combined)
 
     print("Feature shape:", X.shape)
     print("\nBinary target distribution:")
@@ -73,4 +77,30 @@ if __name__ == "__main__":
     joblib.dump(model, model_path)
 
     print(f"\nModel saved to: {model_path}")
-    
+
+
+
+    # Evaluate on unseen Friday DDoS traffic
+    print("\nTesting on unseen Friday DDoS data...")
+
+    df_friday = load_dataset("DDoS-Friday-no-metadata.parquet")
+
+    print("\nFriday label distribution:")
+    print(df_friday["Label"].value_counts())
+
+    X_friday, y_friday = prepare_data(df_friday)
+    y_friday_pred = model.predict(X_friday)
+
+
+
+    print("\nFriday Classification Report:")
+    print(classification_report(
+        y_friday,
+        y_friday_pred,
+        target_names=["Benign", "Attack"],
+        digits=4,
+        zero_division=0
+    ))
+
+    print("\nFriday Confusion Matrix:")
+    print(confusion_matrix(y_friday, y_friday_pred))
