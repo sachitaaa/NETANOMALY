@@ -97,15 +97,18 @@ Train a new model using Tuesday and Wednesday data plus a portion of Friday data
 - Benign false positives: 258
 
 **Confusion matrix:**
-
-| Actual class | Predicted benign | Predicted attack |
-|---|---:|---:|
-| Benign | 207,336 | 258 |
+| Benign | 207,331 | 263 |
 | Attack | 36 | 0 |
 
 **Observation:** Despite high overall accuracy, the model failed to detect any of the 36 Infiltration attacks. This indicates poor generalization to this unseen attack type. Because the attack class contains only 36 records, its evaluation metrics are sensitive to individual predictions.
 
 **Next step:** Investigate whether the model assigns low attack probabilities to Infiltration traffic and explore how different decision thresholds affect detection and false alarms. Any threshold selected using Thursday labels must be treated as exploratory, not as an unbiased final evaluation.
+
+**Conclusion:**
+
+Lowering the threshold to 0.10 increased attack recall to 25.00% but generated 3,935 false alarms. At thresholds of 0.30 and 0.50, the model detected none of the 36 Infiltration attacks. These results illustrate the trade-off between attack detection and false alarms. The threshold comparison is exploratory and does not establish a suitable production threshold.
+
+**Limitation:** Thursday's data was used for threshold exploration, so these results are not an independent final evaluation.
 
 
 ## Experiment 7: Exploratory Decision Threshold Comparison
@@ -499,3 +502,6 @@ This result demonstrates poor generalization from Tuesday and Wednesday training
 - These differences suggest that missed and detected attacks have different traffic characteristics.
 
 **Conclusion:** The baseline model struggles to detect many Friday attacks, even though some traffic features differ
+The baseline model struggles to detect many Friday attacks, even though some traffic features differ between detected and missed attacks. These feature differences are descriptive observations, not proof of the cause of missed detections.
+
+**Limitation:** This analysis uses a sample from a dataset already examined in earlier experiments. The findings should not be treated as independent validation or evidence of causation.
