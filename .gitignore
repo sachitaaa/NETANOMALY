@@ -1,0 +1,13 @@
+# Dataset files — keep raw data local
+data/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
