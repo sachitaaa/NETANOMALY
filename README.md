@@ -109,6 +109,9 @@ Place the required CIC-IDS2017 Parquet files in `data/` and the trained model at
 Dataset files and generated model artifacts are excluded from Git because of their size. You must prepare or obtain these files separately before running the prediction scripts or dashboard.
 
 ## Running the Project
+### Dashboard Preview
+
+![NetAnomaly Dashboard](screenshots/dashboard.png)
 
 ### Launch the Streamlit dashboard
 
