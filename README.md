@@ -111,6 +111,7 @@ Dataset files and generated model artifacts are excluded from Git because of the
 ## Running the Project
 ### Dashboard Preview
 ![NetAnomaly Dashboard](screenshots/dashboard.png)
+![NetAnomaly Dashboard - Results](screenshots/Screenshot 2026-10-12 101435.png)
 
 ### Launch the Streamlit dashboard
 
