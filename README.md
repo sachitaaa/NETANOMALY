@@ -110,7 +110,7 @@ Dataset files and generated model artifacts are excluded from Git because of the
 
 ## Running the Project
 ### Dashboard Preview
-### Dashboard Preview
+
 
 <p align="center">
   <img src="screenshots/dashboard.png" width="48%" />
